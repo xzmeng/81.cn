@@ -41,6 +41,7 @@ class JiefangjunPipeline(object):
                 i_str = str(i)
             text.append('{}-{}-{}'.format(prefix, i_str, p))
         text = '\n'.join(text) + '\n'
-        with open(os.path.join(SAVE_DIR, filename), 'w') as f:
+        print(text)
+        with open(os.path.join(SAVE_DIR, filename), 'w', encoding='utf8') as f:
             f.write(text)
         return item

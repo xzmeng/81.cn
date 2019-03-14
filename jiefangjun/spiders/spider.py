@@ -11,7 +11,7 @@ class SpiderSpider(scrapy.Spider):
         url_fmt = 'http://www.81.cn/jfjbmap/content/{}-{}/{}/node_2.htm'
         for year in range(2014, 2020):
             year = str(year)
-            for month in range(3, 13):
+            for month in range(1, 13):
                 month = '0' + str(month) if month < 10 else month
                 for day in range(1, 32):
                     day = '0' + str(day) if day < 10 else day
