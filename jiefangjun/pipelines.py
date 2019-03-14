@@ -5,6 +5,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import os
+import re
 
 
 class JiefangjunPipeline(object):
@@ -19,15 +20,18 @@ class JiefangjunPipeline(object):
         if not os.path.exists(SAVE_DIR):
             os.makedirs(SAVE_DIR)
         filename = article_no_str + '.txt'
+        cat = re.search(r'(\d+)版：(.*)', item['category'])
+        category = cat.group(1) + '-' + cat.group(2)
+
         prefix = '{}{}{}-{}-{}-{}'.format(
-            item['year'], item['month'], item['day'], cat_no_str, item['category'],
+            item['year'], item['month'], item['day'], cat_no_str, category,
             article_no_str
         )
         text = ['{}-{}-{}'.format(prefix, '00', item['title'])]
         if item.get('introtitle'):
-            text.append('{}-{}-{}'.format(prefix, '-1', item['introtitle']))
+            text.append('{}-{}-{}'.format(prefix, '+1', item['introtitle']))
         if item.get('subtitle'):
-            text.append('{}-{}-{}'.format(prefix, '+1', item['subtitle']))
+            text.append('{}-{}-{}'.format(prefix, '-1', item['subtitle']))
         if item.get('author'):
             text.append('{}-{}-{}'.format(prefix, '+9', item['author']))
         for i, p in enumerate(item['ps'], start=1):
