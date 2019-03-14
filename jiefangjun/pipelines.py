@@ -21,7 +21,7 @@ class JiefangjunPipeline(object):
             os.makedirs(SAVE_DIR)
         filename = article_no_str + '.txt'
         cat = re.search(r'(\d+)版：(.*)', item['category'])
-        category = cat.group(1) + '-' + cat.group(2)
+        category = cat.group(2)
 
         prefix = '{}{}{}-{}-{}-{}'.format(
             item['year'], item['month'], item['day'], cat_no_str, category,

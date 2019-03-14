@@ -9,7 +9,7 @@ class SpiderSpider(scrapy.Spider):
 
     def start_requests(self):
         url_fmt = 'http://www.81.cn/jfjbmap/content/{}-{}/{}/node_2.htm'
-        for year in range(2018, 2020):
+        for year in range(2014, 2020):
             year = str(year)
             for month in range(3, 13):
                 month = '0' + str(month) if month < 10 else month
